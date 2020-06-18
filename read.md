@@ -12,3 +12,7 @@ app > User.php削除
 database > database.sqlite
 
 migration > 2つ削除
+
+evn > sqliteに書き換え
+
+app.php > 'timezone' => 'Asia/Tokyo'
