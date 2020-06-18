@@ -6,3 +6,9 @@ php composer-setup.php
 php -r "unlink('composer-setup.php');"
 laravel inst
 php composer.phar create-project --prefer-dist laravel/laravel todo
+
+app > User.php削除
+
+database > database.sqlite
+
+migration > 2つ削除
