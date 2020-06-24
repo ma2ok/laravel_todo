@@ -30,7 +30,23 @@ class PostsController extends Controller
     }
 
     public function store(Request $request) {
+      $this->validate($request, [
+        'text' => 'required|min:3',
+      ]);
       $post = new Post();
+      $post->text = $request->text;
+      $post->save();
+      return redirect('/');
+    }
+
+    public function edit(Post $post) {
+      return view('posts.edit')->with('post', $post);
+    }
+
+    public function update(Request $request, Post $post) {
+      $this->validate($request, [
+        'text' => 'required|min:3',
+      ]);
       $post->text = $request->text;
       $post->save();
       return redirect('/');

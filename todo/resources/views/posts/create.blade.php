@@ -5,9 +5,10 @@
 @section('content')
 <form method="post" action="{{ url('/posts') }}">
   {{ csrf_field() }}
-  <p>
-    <input type="text" name="text" placeholder="enter text">
-  </p>
+  <input type="text" name="text" placeholder="enter text" value="{{ old('text') }}">
+    @if ($errors->has('text'))
+    <span class="error">{{ $errors->first('text') }}</span>
+    @endif
   <p>
     <input type="submit" value="Add">
   </p>
