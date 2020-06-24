@@ -8,20 +8,11 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index() {
-      // $posts = \App\Post::all();
-      // $posts = Post::all();
-      // $posts = Post::orderBy('created_at', 'desc')->get();
       $posts = Post::latest()->get();
-      // $posts = [];
-      // dd($posts->toArray()); // dump die
-      // return view('posts.index', ['posts' => $posts]);
       return view('posts.index')->with('posts', $posts);
     }
 
-    // public function show($id) {
     public function show(Post $post) {
-      // $post = Post::find($id);
-      // $post = Post::findOrFail($id);
       return view('posts.show')->with('post', $post);
     }
 
@@ -31,7 +22,7 @@ class PostsController extends Controller
 
     public function store(Request $request) {
       $this->validate($request, [
-        'text' => 'required|min:3',
+        'text' => 'required',
       ]);
       $post = new Post();
       $post->text = $request->text;
@@ -45,10 +36,15 @@ class PostsController extends Controller
 
     public function update(Request $request, Post $post) {
       $this->validate($request, [
-        'text' => 'required|min:3',
+        'text' => 'required',
       ]);
       $post->text = $request->text;
       $post->save();
+      return redirect('/');
+    }
+
+    public function destroy(Post $post) {
+      $post->delete();
       return redirect('/');
     }
 

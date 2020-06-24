@@ -8,9 +8,16 @@
 <!-- 入力場所 -->
   <form method="post" action="{{ url('/posts') }}">
   {{ csrf_field() }}
-  <p>
-    <input type="text" name="text" placeholder="enter text">
+  <!-- <p>
+    <input type="text" name="text" placeholder="予定を入力してください"> -->
+    <p>
+    <input type="text" name="text" placeholder="予定を入力してください" value="{{ old('text') }}">
     <input type="submit" value="追加">
+    @if ($errors->has('text'))
+    <p>
+    <span class="error">{{ $errors->first('text') }}</span>
+    </p>
+    @endif
   </p>
 </form>
 <!-- ここまで -->
@@ -28,7 +35,7 @@
     </form>
   </li>
   @empty
-  <li>No posts yet</li>
+  <li>データが入っていません</li>
   @endforelse
 </ul>
 <script src="/js/main.js"></script>

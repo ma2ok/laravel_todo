@@ -4,7 +4,6 @@
 
 @section('content')
 <h1>
-  <a href="{{ url('/') }}" class="header-menu">戻る</a>
   編集画面
 </h1>
 <form method="post" action="{{ url('/posts', $post->id) }}">
@@ -17,7 +16,8 @@
     @endif
   </p>
   <p>
-    <input type="submit" value="Update">
+    <input type="submit" value="更新">
+    <button onclick="location.href="{{ url('/') }}">戻る</button>
   </p>
 </form>
 @endsection
