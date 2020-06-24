@@ -18,12 +18,18 @@
 <ul>
   @forelse ($posts as $post)
   <li>
-    <a href="{{ action('PostsController@show', $post) }}">{{ $post->text }}</a>
-    <a href="{{ action('PostsController@edit', $post) }}" class="edit"><button type="button">編集</button>
-    </a>
+    <a>{{ $post->text }}</a>
+    <a href="{{ action('PostsController@edit', $post) }}" class="edit">
+    <button type="button">編集</button></a>
+    <a href="#" class="del" data-id="{{ $post->id }}"><button type="button">削除</button></a></a>
+    <form method="post" action="{{ url('/posts', $post->id) }}" id="form_{{ $post->id }}">
+      {{ csrf_field() }}
+      {{ method_field('delete') }}
+    </form>
   </li>
   @empty
   <li>No posts yet</li>
   @endforelse
 </ul>
+<script src="/js/main.js"></script>
 @endsection
